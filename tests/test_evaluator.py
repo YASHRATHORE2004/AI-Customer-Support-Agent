@@ -24,8 +24,7 @@ class TestPerformanceEvaluator:
         self.mock_client = Mock()
         self.evaluator = PerformanceEvaluator(self.config, self.mock_client)
 
-    @patch("ai_customer_agent.evaluator.OpenAI")
-    def test_evaluate_interaction(self, mock_openai):
+    def test_evaluate_interaction(self):
         """Test evaluating an interaction."""
         # Mock OpenAI response
         mock_response = Mock()
@@ -40,7 +39,7 @@ class TestPerformanceEvaluator:
         )
         mock_choice.message = mock_message
         mock_response.choices = [mock_choice]
-        mock_openai.return_value.chat.completions.create.return_value = mock_response
+        self.mock_client.chat.completions.create.return_value = mock_response
 
         result = self.evaluator.evaluate_interaction(
             user_input="Where is my order?",

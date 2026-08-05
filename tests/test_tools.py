@@ -31,7 +31,7 @@ class TestCustomerServiceTools:
 
         assert result_data["success"] == False
         assert "error" in result_data
-        assert "not found" in result_data["message"].lower()
+        assert "no order found" in result_data["message"].lower()
 
     def test_process_refund_valid_order(self):
         """Test processing refund for valid order."""

@@ -123,7 +123,7 @@ Always provide clear next steps and set realistic expectations."""
 
             return DemoModeFallback.create_demo_response()
 
-        return self.client.chat.completions.create(**kwargs) # type: ignore
+        return self.client.chat.completions.create(**kwargs)  # type: ignore
 
     def _analyze_sentiment(self, message: str) -> Dict[str, Any]:
         """Analyze sentiment of customer message."""
@@ -273,7 +273,7 @@ Always provide clear next steps and set realistic expectations."""
             return final_response
 
         # Handle tool calls
-        self.conversation_history.append(response_message) # type: ignore
+        self.conversation_history.append(response_message)  # type: ignore
         tool_results = []
 
         for tool_call in tool_calls:

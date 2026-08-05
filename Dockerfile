@@ -18,14 +18,15 @@ COPY scripts/ ./scripts/
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash app
+# Create log directory and set permissions
+RUN mkdir -p /app/logs && chown -R app:app /app
+
+# Switch to non-root user
 USER app
 
 # Set environment variables
 ENV PYTHONPATH=/app/src
 ENV LOG_LEVEL=INFO
-
-# Create log directory
-RUN mkdir -p /app/logs
 
 # Expose port (if using web interface)
 EXPOSE 8000

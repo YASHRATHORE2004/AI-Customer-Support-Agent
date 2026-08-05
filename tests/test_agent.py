@@ -89,12 +89,14 @@ class TestCustomerServiceAgent:
         mock_choice2 = Mock()
         mock_message2 = Mock()
         mock_message2.content = "I found your order. It was delivered on 2025-09-18."
+        mock_message2.tool_calls = []
         mock_choice2.message = mock_message2
         mock_response2.choices = [mock_choice2]
 
         mock_api_call.side_effect = [mock_response1, mock_response2]
 
         agent = CustomerServiceAgent(config=self.config)
+        agent.config.enable_sentiment_analysis = False
         agent.client_available = True
 
         response = agent.chat("Where is my order ORD-12345?")

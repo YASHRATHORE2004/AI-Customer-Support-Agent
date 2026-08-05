@@ -118,7 +118,7 @@ async def execute_workflow(request: WorkflowRequest):
     try:
         from .models import WorkflowStep
 
-        workflow_steps = [WorkflowStep(**step) for step in request.steps] # type: ignore
+        workflow_steps = [WorkflowStep(**step) for step in request.steps]  # type: ignore
 
         results = agent.execute_workflow(workflow_steps)
 
